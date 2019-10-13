@@ -1750,7 +1750,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Use the gravity shot for an extra jump! Space and jump at the same time
+  m_Text: Use the gravity shot for an extra jump! Jump and shoot at the same time
     will boost you higher!
 --- !u!1 &4175658872416886582
 GameObject:
@@ -1840,7 +1840,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4175658872427849136
 Transform:
   m_ObjectHideFlags: 0
