@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour
     public float raycastDistance = 0.8f;
 
     private Rigidbody2D rb;
-    private bool canJump = true;
+    [HideInInspector]
+    public bool canJump = true;
 
     // Start is called before the first frame update
     private void Start()
@@ -35,15 +36,16 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0)
+        if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0 
+            || Input.GetAxis("jHorizontal") > 0 || Input.GetAxis("jHorizontal") < 0)
         {
             if(isGrounded)
             {
-                rb.AddForce(Input.GetAxis("Horizontal") * transform.right * playerAcceleration * Time.deltaTime);
+                rb.AddForce((Input.GetAxis("Horizontal") + Input.GetAxis("jHorizontal")) * transform.right * playerAcceleration * Time.deltaTime);
             }
             else if(!isGrounded)
             {
-                rb.AddForce(Input.GetAxis("Horizontal") * transform.right * (playerAcceleration / 2) * Time.deltaTime);
+                rb.AddForce((Input.GetAxis("Horizontal") + Input.GetAxis("jHorizontal")) * transform.right * (playerAcceleration / 2) * Time.deltaTime);
             }
 
             if(rb.velocity.x > maxPlayerSpeed || rb.velocity.x < -maxPlayerSpeed)
