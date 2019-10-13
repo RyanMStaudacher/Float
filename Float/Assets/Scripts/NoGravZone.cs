@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(AudioSource))]
 public class NoGravZone : MonoBehaviour
 {
     public float initialFloatForce = 10f;
 
+    private AudioSource audioSource;
     private float originalGravity;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,6 +31,7 @@ public class NoGravZone : MonoBehaviour
 
             rb.AddForce(Vector2.up * initialFloatForce, ForceMode2D.Impulse);
 
+            audioSource.Play();
         }
     }
 

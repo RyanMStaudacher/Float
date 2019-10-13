@@ -2,15 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(AudioSource))]
 public class Hazard : MonoBehaviour
 {
-    public GameObject respawnPoint;
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
-            collision.transform.position = respawnPoint.transform.position;
+            audioSource.Play();
+
+            collision.transform.position = collision.GetComponent<PlayerController>().respawnPoint.transform.position;
         }
     }
 }

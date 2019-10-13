@@ -6,6 +6,9 @@ public class GravityHammer : MonoBehaviour
 {
     Rigidbody2D rb;
     PlayerController controller;
+    AudioSource audioSource;
+    [SerializeField]
+    AudioClip swingSound;
     [SerializeField]
     GameObject directionArrow;
 
@@ -22,6 +25,7 @@ public class GravityHammer : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>();
+        audioSource = GetComponent<AudioSource>();
         directionArrow.SetActive(false);
     }
 
@@ -58,6 +62,9 @@ public class GravityHammer : MonoBehaviour
 
             rb.AddForce(dir * hammerForce, ForceMode2D.Impulse);
         }
+
+        audioSource.clip = swingSound;
+        audioSource.Play();
 
         canSwing = false;
 

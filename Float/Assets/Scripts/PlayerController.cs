@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    AudioClip jumpSound;
+    public GameObject respawnPoint;
     public float maxPlayerSpeed = 7f;
     public float playerAcceleration = 3800f;
     public float jumpSpeed = 23f;
@@ -15,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private GravityHammer gravHam;
+    private AudioSource audioSource;
     [HideInInspector]
     public bool canJump = true;
 
@@ -23,6 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         gravHam = GetComponent<GravityHammer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -75,6 +80,10 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(transform.up * jumpSpeed, ForceMode2D.Impulse);
             canJump = false;
+
+            audioSource.clip = jumpSound;
+            audioSource.Play();
+
             StartCoroutine(JumpDelay());
         }
     }
