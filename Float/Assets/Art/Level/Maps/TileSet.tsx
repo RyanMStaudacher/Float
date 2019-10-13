@@ -3,9 +3,6 @@
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <image width="256" height="256" source="../TileSet/png/Tiles/Acid (1).png"/>
-  <objectgroup draworder="index">
-   <object id="1" x="0" y="0" width="256" height="256"/>
-  </objectgroup>
  </tile>
  <tile id="1">
   <image width="256" height="256" source="../TileSet/png/Tiles/Acid (2).png"/>
