@@ -11,12 +11,14 @@ public class Enemy : MonoBehaviour
     public float enemyHealth = 100f;
 
     Rigidbody2D rb;
+    SpriteRenderer sr;
     Vector3 currentDir;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         currentDir = transform.right;
     }
 
@@ -41,20 +43,24 @@ public class Enemy : MonoBehaviour
         if(downHit.collider == null && currentDir == transform.right)
         {
             currentDir = -transform.right;
+            sr.flipX = false;
         }
         else if(downHit.collider == null && currentDir == -transform.right)
         {
             currentDir = transform.right;
+            sr.flipX = true;
         }
 
         if (rightHit.collider != null)
         {
             currentDir = -transform.right;
+            sr.flipX = false;
         }
 
         if (leftHit.collider != null)
         {
             currentDir = transform.right;
+            sr.flipX = true;
         }
 
         Debug.DrawLine(transform.position, transform.position + Vector3.down);
