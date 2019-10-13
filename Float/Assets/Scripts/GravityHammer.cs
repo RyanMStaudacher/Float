@@ -71,7 +71,7 @@ public class GravityHammer : MonoBehaviour
         {
             directionArrow.SetActive(true);
 
-            float heading = Mathf.Atan2(-Input.GetAxis("jrHorizontal"), -Input.GetAxis("jrVertical"));
+            float heading = Mathf.Atan2(Input.GetAxis("jrHorizontal"), Input.GetAxis("jrVertical"));
 
             directionArrow.transform.rotation = Quaternion.Euler(0f, 0f, heading * Mathf.Rad2Deg);
 
