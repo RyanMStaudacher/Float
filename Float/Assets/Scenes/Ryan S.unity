@@ -244,18 +244,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 585593835, guid: 8b9358c37a376214d90153a4a12ba963, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 585593836, guid: 8b9358c37a376214d90153a4a12ba963, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 585593837, guid: 8b9358c37a376214d90153a4a12ba963, type: 3}
-      propertyPath: m_Text
-      value: 'You Win!!
-
-        Press Escape to Quit'
+      propertyPath: m_Name
+      value: Win Text
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b9358c37a376214d90153a4a12ba963, type: 3}
