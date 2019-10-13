@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed = 20f;
     public float jumpDelay = 0.5f;
     public bool isGrounded = true;
+    public bool gravityOn = true;
     [Range(0.5f, 1.0f)]
     public float raycastDistance = 0.8f;
 
@@ -26,14 +27,17 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        CheckIfGrounded();
-        Jump();
+        if(gravityOn)
+        {
+            CheckIfGrounded();
+            Jump();
+        }
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if(gravHam.canSwing)
+        if(gravHam.canSwing && gravityOn)
         {
             MovePlayer();
         }

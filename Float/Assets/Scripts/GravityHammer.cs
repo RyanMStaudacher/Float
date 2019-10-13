@@ -10,10 +10,12 @@ public class GravityHammer : MonoBehaviour
     GameObject directionArrow;
 
     public float swingDelay = 1f;
-    public float hammerForce = 10f;
+    public float noGravSwingDelay = 0.5f;
+    public float hammerForce = 25f;
     public bool canSwing = true;
 
     private Vector2 dir;
+    private float currentSwingDelay = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,15 @@ public class GravityHammer : MonoBehaviour
     {
         DirectionIndicator();
         HandleCrosshair();
+
+        if(controller.gravityOn)
+        {
+            currentSwingDelay = swingDelay;
+        }
+        else if(!controller.gravityOn)
+        {
+            currentSwingDelay = noGravSwingDelay;
+        }
     }
 
     private void SwingHammer()
@@ -87,7 +98,7 @@ public class GravityHammer : MonoBehaviour
 
     IEnumerator HammerDelay()
     {
-        yield return new WaitForSeconds(swingDelay);
+        yield return new WaitForSeconds(currentSwingDelay);
         canSwing = true;
     }
 }
