@@ -12,12 +12,17 @@ public class NoGravZone : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            originalGravity = collision.GetComponent<Rigidbody2D>().gravityScale;
+            Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
 
-            collision.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
-            collision.GetComponent<Rigidbody2D>().AddForce(Vector2.up * initialFloatForce, ForceMode2D.Impulse);
+            originalGravity = rb.gravityScale;
 
+            rb.velocity = rb.velocity / 2;
+
+            rb.gravityScale = 0.0f;
             collision.GetComponent<PlayerController>().gravityOn = false;
+
+            rb.AddForce(Vector2.up * initialFloatForce, ForceMode2D.Impulse);
+
         }
     }
 
