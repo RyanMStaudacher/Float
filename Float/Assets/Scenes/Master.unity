@@ -225,7 +225,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.076
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -388,6 +388,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2195617785761941213, guid: 6d7dcb22ef11103478a0ff6c89bac554,
+        type: 3}
+      propertyPath: initialFloatForce
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d7dcb22ef11103478a0ff6c89bac554, type: 3}
 --- !u!1 &1493776679
@@ -486,6 +491,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348720960383293848, guid: c6762afad75e960439f2acc523a37989,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2080963897
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348720960383293848, guid: c6762afad75e960439f2acc523a37989,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6762afad75e960439f2acc523a37989, type: 3}
