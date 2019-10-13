@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class NoGravZone : MonoBehaviour
 {
-    float originalGravity;
+    public float initialFloatForce = 10f;
+
+    private float originalGravity;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,6 +15,9 @@ public class NoGravZone : MonoBehaviour
             originalGravity = collision.GetComponent<Rigidbody2D>().gravityScale;
 
             collision.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+            collision.GetComponent<Rigidbody2D>().AddForce(Vector2.up * initialFloatForce, ForceMode2D.Impulse);
+
+            collision.GetComponent<PlayerController>().gravityOn = false;
         }
     }
 
@@ -21,6 +26,8 @@ public class NoGravZone : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             collision.GetComponent<Rigidbody2D>().gravityScale = originalGravity;
+
+            collision.GetComponent<PlayerController>().gravityOn = true;
         }
     }
 }
