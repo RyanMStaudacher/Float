@@ -6,7 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     AudioClip jumpSound;
+    [SerializeField]
+    AudioClip deathSound;
     public GameObject respawnPoint;
+    public float playerHealth = 100;
     public float maxPlayerSpeed = 7f;
     public float playerAcceleration = 3800f;
     public float jumpSpeed = 23f;
@@ -21,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource audioSource;
     [HideInInspector]
     public bool canJump = true;
+    private float initialHealth;
 
     // Start is called before the first frame update
     private void Start()
@@ -28,6 +32,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         gravHam = GetComponent<GravityHammer>();
         audioSource = GetComponent<AudioSource>();
+        initialHealth = playerHealth;
     }
 
     private void Update()
@@ -36,6 +41,11 @@ public class PlayerController : MonoBehaviour
         {
             CheckIfGrounded();
             Jump();
+        }
+
+        if(playerHealth <= 0f)
+        {
+            Die();
         }
     }
 
@@ -103,6 +113,14 @@ public class PlayerController : MonoBehaviour
         }
 
         Debug.DrawLine(transform.position, transform.position - rayDist);
+    }
+
+    public void Die()
+    {
+        transform.position = respawnPoint.transform.position;
+        audioSource.clip = deathSound;
+        audioSource.Play();
+        playerHealth = initialHealth;
     }
 
     IEnumerator JumpDelay()

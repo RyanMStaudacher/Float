@@ -26,7 +26,6 @@ public class GravityHammer : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>();
         audioSource = GetComponent<AudioSource>();
-        directionArrow.SetActive(false);
     }
 
     // Update is called once per frame
@@ -76,7 +75,7 @@ public class GravityHammer : MonoBehaviour
         if(Input.GetAxis("jrHorizontal") > 0 || Input.GetAxis("jrHorizontal") < 0 
             || Input.GetAxis("jrVertical") > 0 || Input.GetAxis("jrVertical") < 0)
         {
-            directionArrow.SetActive(true);
+            directionArrow.transform.Find("Directional Arrow").gameObject.GetComponent<SpriteRenderer>().enabled = true;
 
             float heading = Mathf.Atan2(Input.GetAxis("jrHorizontal"), Input.GetAxis("jrVertical"));
 
@@ -91,7 +90,7 @@ public class GravityHammer : MonoBehaviour
         }
         else
         {
-            directionArrow.SetActive(false);
+            directionArrow.transform.Find("Directional Arrow").gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 

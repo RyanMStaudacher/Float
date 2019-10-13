@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(AudioSource))]
 public class Hazard : MonoBehaviour
 {
     private AudioSource audioSource;
@@ -17,9 +16,7 @@ public class Hazard : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            audioSource.Play();
-
-            collision.transform.position = collision.GetComponent<PlayerController>().respawnPoint.transform.position;
+            collision.GetComponent<PlayerController>().Die();
         }
     }
 }
