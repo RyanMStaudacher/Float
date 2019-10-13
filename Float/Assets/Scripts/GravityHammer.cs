@@ -11,8 +11,9 @@ public class GravityHammer : MonoBehaviour
 
     public float swingDelay = 1f;
     public float hammerForce = 10f;
+    public bool canSwing = true;
 
-    private bool canSwing = true;
+    private Vector2 dir;
 
     // Start is called before the first frame update
     void Start()
@@ -26,13 +27,30 @@ public class GravityHammer : MonoBehaviour
     void Update()
     {
         DirectionIndicator();
+        HandleCrosshair();
     }
 
     private void SwingHammer()
     {
-        Vector2 dir = new Vector2(-Input.GetAxis("jrHorizontal"), Input.GetAxis("jrVertical"));
+        var worldMousePosition = GetComponentInChildren<Camera>().ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z));
 
-        rb.AddForce(dir * hammerForce, ForceMode2D.Impulse);
+        if (Cursor.visible == true)
+        {
+            dir = worldMousePosition - transform.position;
+            dir.Normalize();
+
+            rb.AddForce(-dir * hammerForce, ForceMode2D.Impulse);
+        }
+        else if (Cursor.visible == false)
+        {
+            dir = new Vector2(-Input.GetAxis("jrHorizontal"), Input.GetAxis("jrVertical"));
+
+            rb.AddForce(dir * hammerForce, ForceMode2D.Impulse);
+        }
+
+        canSwing = false;
+
+        StartCoroutine(HammerDelay());
     }
 
     private void DirectionIndicator()
@@ -46,7 +64,7 @@ public class GravityHammer : MonoBehaviour
 
             directionArrow.transform.rotation = Quaternion.Euler(0f, 0f, heading * Mathf.Rad2Deg);
 
-            if(Input.GetAxis("Fire1") == 1)
+            if(Input.GetAxis("Fire1") == 1 && canSwing)
             {
                 SwingHammer();
             }
@@ -56,6 +74,14 @@ public class GravityHammer : MonoBehaviour
         else
         {
             directionArrow.SetActive(false);
+        }
+    }
+
+    private void HandleCrosshair()
+    {
+        if(Input.GetAxis("Fire1") == 1 && canSwing)
+        {
+            SwingHammer();
         }
     }
 

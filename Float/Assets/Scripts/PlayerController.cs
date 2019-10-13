@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float raycastDistance = 0.8f;
 
     private Rigidbody2D rb;
+    private GravityHammer gravHam;
     [HideInInspector]
     public bool canJump = true;
 
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        gravHam = GetComponent<GravityHammer>();
     }
 
     private void Update()
@@ -31,7 +33,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        MovePlayer();
+        if(gravHam.canSwing)
+        {
+            MovePlayer();
+        }
     }
 
     private void MovePlayer()
@@ -48,10 +53,15 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce((Input.GetAxis("Horizontal") + Input.GetAxis("jHorizontal")) * transform.right * (playerAcceleration / 2) * Time.deltaTime);
             }
 
-            if(rb.velocity.x > maxPlayerSpeed || rb.velocity.x < -maxPlayerSpeed)
-            {
-                rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxPlayerSpeed, maxPlayerSpeed), rb.velocity.y);
-            }
+            ClampSpeed();
+        }
+    }
+
+    private void ClampSpeed()
+    {
+        if (rb.velocity.x > maxPlayerSpeed || rb.velocity.x < -maxPlayerSpeed)
+        {
+            rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxPlayerSpeed, maxPlayerSpeed), rb.velocity.y);
         }
     }
 
