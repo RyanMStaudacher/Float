@@ -26,6 +26,7 @@ public class GravityHammer : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>();
         audioSource = GetComponent<AudioSource>();
+        directionArrow.transform.Find("Grav Ham Blast").gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     // Update is called once per frame
@@ -33,6 +34,7 @@ public class GravityHammer : MonoBehaviour
     {
         DirectionIndicator();
         HandleCrosshair();
+        HandleHamSlam();
 
         if(controller.gravityOn)
         {
@@ -102,9 +104,27 @@ public class GravityHammer : MonoBehaviour
         }
     }
 
+    private void HandleHamSlam()
+    {
+        if(Cursor.visible == false)
+        {
+            if(!canSwing)
+            {
+                directionArrow.transform.Find("Grav Ham Blast").gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                StartCoroutine(BlastDelay());
+            }
+        }
+    }
+
     IEnumerator HammerDelay()
     {
         yield return new WaitForSeconds(currentSwingDelay);
         canSwing = true;
+    }
+
+    IEnumerator BlastDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        directionArrow.transform.Find("Grav Ham Blast").gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 }
