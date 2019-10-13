@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float maxPlayerSpeed = 15f;
-    public float playerAcceleration = 5000f;
-    public float jumpSpeed = 20f;
+    public float maxPlayerSpeed = 7f;
+    public float playerAcceleration = 3800f;
+    public float jumpSpeed = 23f;
     public float jumpDelay = 0.5f;
     public bool isGrounded = true;
     public bool gravityOn = true;
