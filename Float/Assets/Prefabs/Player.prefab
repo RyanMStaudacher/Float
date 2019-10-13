@@ -439,9 +439,9 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 2e12b238bf4cf584a8ee922e604b77cd, type: 3}
   respawnPoint: {fileID: 0}
   playerHealth: 100
-  maxPlayerSpeed: 7
+  maxPlayerSpeed: 10
   playerAcceleration: 3800
-  jumpSpeed: 23
+  jumpSpeed: 30
   jumpDelay: 0.5
   isGrounded: 1
   gravityOn: 1
@@ -463,7 +463,7 @@ MonoBehaviour:
   directionArrow: {fileID: 7348720960788445350}
   swingDelay: 1
   noGravSwingDelay: 0.5
-  hammerForce: 25
+  hammerForce: 30
   canSwing: 1
 --- !u!82 &1871186531
 AudioSource:
